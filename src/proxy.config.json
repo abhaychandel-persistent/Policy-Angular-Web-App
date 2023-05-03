@@ -1,0 +1,8 @@
+{
+  "/api*":{
+  "target": "https://appservice-webapi-1072.azurewebsites.net",
+  "secure": false,
+  "changeOrigin": true,
+  "logLevel":"debug"
+  }
+}
