@@ -1,16 +1,9 @@
 <div *ngIf="isUserLoggedIn">
       <div class="center">
-        <!-- <h1 style="color: blue" *ngIf="!displayPolicies">welcome</h1> -->
         <button mat-raised-button color="primary" *ngIf="!displayPolicies" (click)="showPolicies()">Show Policies List</button>
+        <button mat-raised-button style="margin-left:20px" color="primary" *ngIf="!displayPolicies" (click)="createPolicy()">Create New Policy</button>
         <button mat-raised-button color="primary" *ngIf="displayPolicies" (click)="showPolicies()">Close Policies List</button>
-      </div>
-        <mat-list *ngIf="displayemployees">
-            <mat-list-item  *ngFor="let item of (employees$ | async)">
-        <span class="text-gray-700">
-            {{item.firstName}} {{item.lastName}}
-        </span>
-            </mat-list-item>
-        </mat-list>
+    </div>
         <table *ngIf="displayPolicies" mat-table [dataSource]="(employees$ | async)" class="mat-elevation-z8">
           <!-- Policynumber Column -->
           <ng-container matColumnDef="policyNo">

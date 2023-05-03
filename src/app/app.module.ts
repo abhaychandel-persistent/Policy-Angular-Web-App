@@ -17,6 +17,13 @@ import { ProfileComponent } from './profile/profile.component';
 import { AzureAdDemoService } from './azure-ad-demo.service';
 import { EmployeeService } from './employee.service';
 import { environment } from 'src/environments/environment';
+import { CreatePolicyComponent } from './create-policy/create-policy.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
 
@@ -27,7 +34,7 @@ export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
   protectedResourceMap.set('http://localhost:8080/policies', ['d4dbe9b4-e1f0-47a0-bbf7-7f8c8d1fec7f/.default']);
 
   return {
-    interactionType: InteractionType.Popup,
+    interactionType: InteractionType.Redirect,
     protectedResourceMap
   };
 }
@@ -36,7 +43,8 @@ export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
   declarations: [
     AppComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    CreatePolicyComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +55,13 @@ export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
     MatButtonModule,
     MatToolbarModule,
     MatTableModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    FormsModule,
+    BrowserAnimationsModule,
     MsalModule.forRoot( new PublicClientApplication
       (
         {

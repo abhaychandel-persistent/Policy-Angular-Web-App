@@ -1,0 +1,35 @@
+<mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field appearance="standard">
+      <mat-label>Policy Name</mat-label>
+      <input matInput placeholder="Enter your name" formControlName="policyName" />
+    </mat-form-field>
+
+    <mat-form-field appearance="standard">
+      <mat-label>Policy Description</mat-label>
+      <textarea
+        matInput
+        placeholder="Policy Description"
+        formControlName="description"
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" hintLabel="Policy Type required">
+      <mat-label>Policy Type</mat-label>
+      <mat-select matNativeControl name="country" formControlName="type">
+        <mat-option value="Life Term">Life Term</mat-option>
+        <mat-option value="Vehicle">Vehicle</mat-option>
+        <mat-option value="Health Insurance">Health Insurance</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button (click)="dialogRef.close(false)" color="primary">
+    Close
+  </button>
+  <button mat-raised-button color="primary" (click)="submit(form.value)">
+    Submit
+  </button>
+</mat-dialog-actions>
