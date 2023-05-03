@@ -7,7 +7,7 @@ export const environment = {
   postLogoutUrl: 'http://localhost:4200',
   // apiEndPoint: 'https://appservice-webapi-1072.azurewebsites.net/policies',
   apiEndPoint: 'http://localhost:8080/policies',
-  baseURL: "http://localhost:8080/",
+  baseURL: "http://localhost:8080",
 
   auth: {
     clientId: 'd4dbe9b4-e1f0-47a0-bbf7-7f8c8d1fec7f', // Application (client) ID from the app registration
