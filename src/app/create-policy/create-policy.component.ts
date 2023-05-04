@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { EmployeeService } from '../employee.service';
 
 @Component({
   selector: 'app-create-policy',
@@ -9,9 +10,11 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class CreatePolicyComponent {
   form: FormGroup;
+  dataFromDialog: any;
 
   constructor(public dialogRef: MatDialogRef<CreatePolicyComponent>,
     @Inject(MAT_DIALOG_DATA) data: any,  private fb: FormBuilder,
+    private employeeService: EmployeeService
     ) { }
 
   ngOnInit(): void {
@@ -23,7 +26,6 @@ export class CreatePolicyComponent {
   }
 
   submit(form: NgForm) {
-    console.log("form",form)
     this.dialogRef.close({
       clicked: 'submit',
       form: form,

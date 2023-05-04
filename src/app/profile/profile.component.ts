@@ -27,7 +27,6 @@ export class ProfileComponent implements OnInit {
     this.getProfile();
     this.getProfilePic();
     const xyz = localStorage.getItem('token');
-    // console.log("xyz",xyz)
   }
 
 

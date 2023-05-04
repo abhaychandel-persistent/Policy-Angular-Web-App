@@ -15,11 +15,10 @@ export class EmployeeService {
   getEmployees(): Observable<Employee[]> {
     const t = localStorage.getItem('token');
     var headers_object = new HttpHeaders().set("Authorization", "Bearer " + t);
-    console.log(this.http.get<Employee[]>(environment.apiEndPoint));
     return this.http.get<Employee[]>(environment.baseURL + '/policies');
   }
 
-  SavePolicy(obj: any) {
+  SavePolicy(obj: any): Observable<any> {
     const t = localStorage.getItem('token');
     var headers_object = new HttpHeaders().set("Authorization", "Bearer " + t);
     return this.http.post(environment.baseURL + '/policies', obj);

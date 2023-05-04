@@ -53,9 +53,9 @@ export class HomeComponent implements OnInit {
     dialogRef.afterClosed().subscribe((data) => {
       this.dataFromDialog = data.form;
       if (data.clicked === 'submit') {
-        console.log('Sumbit button clicked',this.dataFromDialog);
-        this.employeeService.SavePolicy(this.dataFromDialog)
-        this.ngOnInit();
+        this.employeeService.SavePolicy(this.dataFromDialog).subscribe((data) => {
+          this.employees$ = this.employeeService.getEmployees();
+        })
       }
     });
   }
