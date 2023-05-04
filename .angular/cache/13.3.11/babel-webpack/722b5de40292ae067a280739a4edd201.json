@@ -1,1 +1,0 @@
-{"ast":null,"code":"/*! @azure/msal-browser v2.36.0 2023-04-18 */\n'use strict';\n\n/* eslint-disable header/header */\nvar name = \"@azure/msal-browser\";\nvar version = \"2.36.0\";\nexport { name, version };\n//# sourceMappingURL=packageMetadata.js.map","map":null,"metadata":{},"sourceType":"module"}
