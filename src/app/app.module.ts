@@ -24,6 +24,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
 
@@ -61,6 +62,11 @@ export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
     MatInputModule,
     ReactiveFormsModule,
     FormsModule,
+    ToastrModule.forRoot({
+      timeOut: 5000, // 5 seconds
+      closeButton: true,
+      progressBar: false,
+    }),
     BrowserAnimationsModule,
     MsalModule.forRoot( new PublicClientApplication
       (

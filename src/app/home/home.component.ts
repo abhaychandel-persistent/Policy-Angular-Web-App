@@ -1,12 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { AzureAdDemoService } from '../azure-ad-demo.service';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { EmployeeService } from '../employee.service';
-import { Employee } from '../app.module';
 import { MSAL_GUARD_CONFIG, MsalGuardConfiguration } from '@azure/msal-angular';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { CreatePolicyComponent } from '../create-policy/create-policy.component';
-
+import { ToastrService } from 'ngx-toastr';
 
 export interface PoliciesElement {
   id: string;
@@ -33,7 +32,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private azureAdDemoService: AzureAdDemoService,
     @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
-    private employeeService: EmployeeService, public dialog: MatDialog) {
+    private employeeService: EmployeeService, public dialog: MatDialog, private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -51,11 +50,16 @@ export class HomeComponent implements OnInit {
   createPolicy(){
     const dialogRef = this.dialog.open(CreatePolicyComponent,);
     dialogRef.afterClosed().subscribe((data) => {
+      this.toastr.success('Policy Created Successfully!', 'Success');
       this.dataFromDialog = data.form;
       if (data.clicked === 'submit') {
         this.employeeService.SavePolicy(this.dataFromDialog).subscribe((data) => {
           this.employees$ = this.employeeService.getEmployees();
-        })
+        },
+        error => {
+          console.log('error',error);
+          this.toastr.error('Something went wrong. Please try after some time', 'Error');
+      })
       }
     });
   }
