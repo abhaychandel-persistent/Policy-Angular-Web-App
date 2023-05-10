@@ -1,8 +1,9 @@
 <div *ngIf="isUserLoggedIn">
       <div class="center">
         <button mat-raised-button color="primary" *ngIf="!displayPolicies" (click)="showPolicies()">Show Policies List</button>
-        <button mat-raised-button style="margin-left:20px" color="primary" *ngIf="!displayPolicies" (click)="createPolicy()">Create New Policy</button>
         <button mat-raised-button color="primary" *ngIf="displayPolicies" (click)="showPolicies()">Close Policies List</button>
+
+        <button mat-raised-button style="margin-left:20px" color="primary" (click)="createPolicy()">Create New Policy</button>
     </div>
         <table *ngIf="displayPolicies" mat-table [dataSource]="(employees$ | async)" class="mat-elevation-z8">
           <!-- Policynumber Column -->

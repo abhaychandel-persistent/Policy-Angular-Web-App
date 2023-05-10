@@ -50,17 +50,20 @@ export class HomeComponent implements OnInit {
   createPolicy(){
     const dialogRef = this.dialog.open(CreatePolicyComponent,);
     dialogRef.afterClosed().subscribe((data) => {
-      this.toastr.success('Policy Created Successfully!', 'Success');
       this.dataFromDialog = data.form;
       if (data.clicked === 'submit') {
-        this.employeeService.SavePolicy(this.dataFromDialog).subscribe((data) => {
-          this.employees$ = this.employeeService.getEmployees();
+        this.employeeService.SavePolicy(this.dataFromDialog).subscribe({
+          next: data => {
+            this.toastr.success('Policy Created Successfully!', 'Success');
+            this.employees$ = this.employeeService.getEmployees();
         },
-        error => {
-          console.log('error',error);
+        error: error => {
           this.toastr.error('Something went wrong. Please try after some time', 'Error');
-      })
+          console.error('There was an error!', error);
+        }
+       })
       }
     });
   }
 }
+
